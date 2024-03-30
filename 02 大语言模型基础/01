@@ -1,0 +1,16 @@
+# prefix Decoder和 causal Decoder和 Encoder-Decoder 区别是什么？
+## 1 Causal Decoder（因果解码器）：
+- 采用单向注意力掩码，确保每个输入标记只能关注过去的标记和它本身。
+- 输入和输出标记通过解码器以相同的方式进行处理。
+- 典型代表是GPT系列模型，如GPT-3和ChatGPT。
+## 2 Prefix Decoder（前缀解码器）：
+- 修正了因果编码器的掩码机制，使其能够对前缀标记执行双向注意力，并仅对生成的标记执行单向注意力。
+- 类似于Encoder-Decoder，可以双向编码前缀序列并自回归地逐个预测输出标记，其中在编码和解码阶段共享相同的参数。
+- 典型代表包括U-PaLM、GLM-130B等。
+## 3 Encoder-Decoder（编码器-解码器）：
+- 传统的Transformer模型采用的就是这种架构。
+- 包含两部分：编码器和解码器，两者的参数独立。
+- 编码器将输入序列处理为中间表示，而解码器基于中间表示自回归地生成目标序列。
+- 典型代表是Flan-T5。
+总结：
+Causal Decoder使用单向注意力，Prefix Decoder在输入部分使用双向注意力，输出部分使用单向注意力，而Encoder-Decoder则分别采用双向和单向注意力。
